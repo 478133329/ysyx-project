@@ -1,4 +1,6 @@
   #include "Vmy_cpu.h"
+  #include "Vmy_cpu__Dpi.h"
+  #include "svdpi.h"
   #include "verilated.h"
   #include "verilated_vcd_c.h"
   #include "stdio.h"
@@ -10,6 +12,9 @@
   Vmy_cpu *top;
   VerilatedContext* contextp;
   VerilatedVcdC* tfp;
+
+  svBit finish = 0;
+  void call_break(svBit call) { finish = call; }
 
   void memory_reset() {
   	memory[0] = 0x00200513;
@@ -53,7 +58,8 @@
 	memory_reset();
 	pc_reset(10);
 	int counter = 0;
-	while (!contextp->gotFinish()) { 
+	// while (!contextp->gotFinish()) { 
+	while (!finish) {
 		single_cycle();
 		counter++;
 	}

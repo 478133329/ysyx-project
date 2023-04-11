@@ -1,3 +1,5 @@
+import "DPI-C" function void call_break(input bit call);
+
 module my_cpu(input clk, 
 		input rst, 
 		input[31:0] instr, 
@@ -38,7 +40,7 @@ module my_cpu(input clk,
 	controller my_controller(.instr(instr), .imm(imm), .reg_wen(reg_wen), .reg_src1(reg_raddr1), .reg_src2(reg_raddr2), .reg_dst(reg_waddr), 
 				.alu_op(alu_op), .alu_a_sel(alu_a_sel), .alu_b_sel(alu_b_sel), .mem_wen(mem_wen), .pc_jump());
 	always@(*) begin
-		if(instr==32'h00100073) $finish;
+		if(instr==32'h00100073) call_break(1'b1);
 	end
 endmodule
 
