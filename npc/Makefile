@@ -1,10 +1,12 @@
+VSRC_DIR := $(abspath $(NPC_HOME)/vsrc)
+CSRC_DIR := $(abspath $(NPC_HOME)/csrc)
+
 all:
 	@echo "Write this Makefile by your self."
 
 sim:
+	verilator --cc --build --exe --trace $(VSRC_DIR)/my_cpu.v $(CSRC_DIR)/*.cpp -I$(VSRC_DIR) -I$(CSRC_DIR)/include
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo "Write this Makefile by your self."
-	verilator --cc --build --exe --trace vsrc/my_cpu.v csrc/sim_main.cpp -Ivsrc
-	./obj_dir/Vmy_cpu 
 
-include ../Makefile
+include $(NPC_HOME)/../Makefile
+

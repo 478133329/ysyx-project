@@ -32,11 +32,11 @@ class Vmy_cpu VL_NOT_FINAL : public VerilatedModel {
     VL_IN8(&rst,0,0);
     VL_OUT8(&mem_wen,0,0);
     VL_IN(&instr,31,0);
-    VL_IN(&rdata,31,0);
-    VL_OUT(&wdata,31,0);
-    VL_OUT(&instr_raddr,31,0);
-    VL_OUT(&data_raddr,31,0);
-    VL_OUT(&data_waddr,31,0);
+    VL_IN64(&rdata,63,0);
+    VL_OUT64(&wdata,63,0);
+    VL_OUT64(&instr_raddr,63,0);
+    VL_OUT64(&data_raddr,63,0);
+    VL_OUT64(&data_waddr,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
