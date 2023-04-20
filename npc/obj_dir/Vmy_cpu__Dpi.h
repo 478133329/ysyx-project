@@ -16,7 +16,7 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at vsrc/my_cpu.v:1:30
+    // DPI import at /home/wangsijie/workspace/ysyx-workbench/npc/vsrc/my_cpu.v:1:30
     extern void call_break(svBit call);
 
 #ifdef __cplusplus

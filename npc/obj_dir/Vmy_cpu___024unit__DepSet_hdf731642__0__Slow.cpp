@@ -11,4 +11,6 @@ VL_ATTR_COLD void Vmy_cpu___024unit___ctor_var_reset(Vmy_cpu___024unit* vlSelf) 
     if (false && vlSelf) {}  // Prevent unused
     Vmy_cpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+        Vmy_cpu___024unit___ctor_var_reset\n"); );
+    // Body
+    vlSelf->less_than__Vstatic__temp = VL_RAND_RESET_Q(64);
 }

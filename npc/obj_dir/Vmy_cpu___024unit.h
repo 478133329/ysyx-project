@@ -12,6 +12,9 @@ class Vmy_cpu__Syms;
 class Vmy_cpu___024unit final : public VerilatedModule {
   public:
 
+    // DESIGN SPECIFIC STATE
+    QData/*63:0*/ less_than__Vstatic__temp;
+
     // INTERNAL VARIABLES
     Vmy_cpu__Syms* const vlSymsp;
 

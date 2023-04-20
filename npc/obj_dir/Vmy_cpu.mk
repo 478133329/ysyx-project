@@ -4,7 +4,7 @@
 # Execute this makefile from the object directory:
 #    make -f Vmy_cpu.mk
 
-default: Vmy_cpu__ALL.a
+default: Vmy_cpu
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -41,9 +41,13 @@ VM_USER_LDLIBS = \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
+	main \
+	memory \
+	sim_main \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
+	/home/wangsijie/workspace/ysyx-workbench/npc/csrc \
 
 
 ### Default rules...
@@ -51,5 +55,20 @@ VM_USER_DIR = \
 include Vmy_cpu_classes.mk
 # Include global rules
 include $(VERILATOR_ROOT)/include/verilated.mk
+
+### Executable rules... (from --exe)
+VPATH += $(VM_USER_DIR)
+
+main.o: /home/wangsijie/workspace/ysyx-workbench/npc/csrc/main.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+memory.o: /home/wangsijie/workspace/ysyx-workbench/npc/csrc/memory.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sim_main.o: /home/wangsijie/workspace/ysyx-workbench/npc/csrc/sim_main.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+
+### Link rules... (from --exe)
+Vmy_cpu: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
+
 
 # Verilated -*- Makefile -*-

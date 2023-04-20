@@ -38,7 +38,8 @@ VL_INLINE_OPT void Vmy_cpu___024root___nba_sequent__TOP__0(Vmy_cpu___024root* vl
         vlSelf->my_cpu__DOT__pc = vlSelf->my_cpu__DOT__my_pc__DOT__npc;
         if (((IData)(vlSelf->my_cpu__DOT__my_controller__DOT__is_u_type) 
              | ((0x6fU == (0x7fU & vlSelf->instr)) 
-                | (IData)(vlSelf->my_cpu__DOT__alu_a_sel)))) {
+                | ((IData)(vlSelf->my_cpu__DOT__my_controller__DOT__is_i_type) 
+                   | (0x33U == (0x7fU & vlSelf->instr)))))) {
             vlSelf->my_cpu__DOT__my_reg_heap__DOT____Vcellout__reg_heap_reg__dout 
                 = vlSelf->my_cpu__DOT__reg_wdata;
         }
@@ -93,115 +94,9 @@ VL_INLINE_OPT void Vmy_cpu___024root___nba_sequent__TOP__0(Vmy_cpu___024root* vl
     vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__data_list[0U] 
         = vlSelf->my_cpu__DOT__my_reg_heap__DOT__registers
         [(0x1fU & (vlSelf->instr >> 0x14U))];
-    vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__lut_out 
-        = ((- (QData)((IData)(((0x33U == (0x7fU & vlSelf->instr)) 
-                               == vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__key_list
-                               [0U])))) & vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__data_list
-           [0U]);
-    vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((0x33U == (0x7fU 
-                                             & vlSelf->instr)) 
-                                  == vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__key_list
-                                  [1U])))) & vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__data_list
-              [1U]));
-    vlSelf->my_cpu__DOT__alu_src2 = vlSelf->my_cpu__DOT__alu_src2_mux21__DOT__i0__DOT__lut_out;
 }
 
-VL_INLINE_OPT void Vmy_cpu___024root___nba_sequent__TOP__1(Vmy_cpu___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vmy_cpu__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vmy_cpu___024root___nba_sequent__TOP__1\n"); );
-    // Body
-    vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__lut_out 
-        = ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__alu_a_sel) 
-                               == vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__key_list
-                               [0U])))) & vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__data_list
-           [0U]);
-    vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__alu_a_sel) 
-                                  == vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__key_list
-                                  [1U])))) & vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__data_list
-              [1U]));
-    vlSelf->my_cpu__DOT__alu_src1 = vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__lut_out;
-    vlSelf->my_cpu__DOT__alu_dst = ((IData)(vlSelf->my_cpu__DOT__alu_op)
-                                     ? ((IData)(vlSelf->my_cpu__DOT__alu_op)
-                                         ? (vlSelf->my_cpu__DOT__alu_src1 
-                                            + vlSelf->my_cpu__DOT__alu_src2)
-                                         : vlSelf->my_cpu__DOT__alu_src2)
-                                     : vlSelf->my_cpu__DOT__alu_src2);
-    vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__pair_list[1U][0U] 
-        = (IData)(vlSelf->my_cpu__DOT__alu_dst);
-    vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__pair_list[1U][1U] 
-        = (IData)((vlSelf->my_cpu__DOT__alu_dst >> 0x20U));
-    vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__pair_list[1U][2U] = 0U;
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__pair_list[2U][0U] 
-        = (IData)(vlSelf->my_cpu__DOT__alu_dst);
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__pair_list[2U][1U] 
-        = (IData)((vlSelf->my_cpu__DOT__alu_dst >> 0x20U));
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__pair_list[2U][2U] = 1U;
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__data_list[2U] 
-        = vlSelf->my_cpu__DOT__alu_dst;
-    vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__data_list[1U] 
-        = vlSelf->my_cpu__DOT__alu_dst;
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-        = ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__reg_input_sel) 
-                               == vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__key_list
-                               [0U])))) & vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__data_list
-           [0U]);
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__reg_input_sel) 
-                                  == vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__key_list
-                                  [1U])))) & vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__data_list
-              [1U]));
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__reg_input_sel) 
-                                  == vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__key_list
-                                  [2U])))) & vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__data_list
-              [2U]));
-    vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__reg_input_sel) 
-                                  == vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__key_list
-                                  [3U])))) & vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__data_list
-              [3U]));
-    vlSelf->my_cpu__DOT__reg_wdata = vlSelf->my_cpu__DOT__reg_input_mux41__DOT__i0__DOT__lut_out;
-    vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__lut_out 
-        = ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__my_controller__DOT__is_b_type) 
-                               == vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__key_list
-                               [0U])))) & vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__data_list
-           [0U]);
-    vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__my_controller__DOT__is_b_type) 
-                                  == vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__key_list
-                                  [1U])))) & vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__data_list
-              [1U]));
-    vlSelf->my_cpu__DOT__pc_jump_addr = vlSelf->my_cpu__DOT__jump_sel_mux21__DOT__i0__DOT__lut_out;
-    vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__pair_list[0U][0U] 
-        = (IData)(vlSelf->my_cpu__DOT__pc_jump_addr);
-    vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__pair_list[0U][1U] 
-        = (IData)((vlSelf->my_cpu__DOT__pc_jump_addr 
-                   >> 0x20U));
-    vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__pair_list[0U][2U] = 1U;
-    vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__data_list[0U] 
-        = vlSelf->my_cpu__DOT__pc_jump_addr;
-    vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__lut_out 
-        = ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__pc_jump) 
-                               == vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__key_list
-                               [0U])))) & vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__data_list
-           [0U]);
-    vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__lut_out 
-        = (vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__lut_out 
-           | ((- (QData)((IData)(((IData)(vlSelf->my_cpu__DOT__pc_jump) 
-                                  == vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__key_list
-                                  [1U])))) & vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__data_list
-              [1U]));
-    vlSelf->my_cpu__DOT__my_pc__DOT__npc = vlSelf->my_cpu__DOT__my_pc__DOT__program_counter_mux21__DOT__i0__DOT__lut_out;
-}
+void Vmy_cpu___024root___nba_sequent__TOP__1(Vmy_cpu___024root* vlSelf);
 
 void Vmy_cpu___024root___eval_nba(Vmy_cpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -248,7 +143,7 @@ void Vmy_cpu___024root___eval(Vmy_cpu___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vmy_cpu___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/my_cpu.v", 3, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/wangsijie/workspace/ysyx-workbench/npc/vsrc/my_cpu.v", 3, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -271,7 +166,7 @@ void Vmy_cpu___024root___eval(Vmy_cpu___024root* vlSelf) {
 #ifdef VL_DEBUG
                     Vmy_cpu___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("vsrc/my_cpu.v", 3, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/wangsijie/workspace/ysyx-workbench/npc/vsrc/my_cpu.v", 3, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -286,7 +181,7 @@ void Vmy_cpu___024root___eval(Vmy_cpu___024root* vlSelf) {
 #ifdef VL_DEBUG
                 Vmy_cpu___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("vsrc/my_cpu.v", 3, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/wangsijie/workspace/ysyx-workbench/npc/vsrc/my_cpu.v", 3, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             Vmy_cpu___024root___eval_nba(vlSelf);

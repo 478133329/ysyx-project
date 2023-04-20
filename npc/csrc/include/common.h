@@ -1,11 +1,10 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
-#include <stdint.h>
 #include <stdio.h>
 #include <assert.h>
 
-typedef uint64_t word_t;
-typedef int64_t sword_t;
+typedef unsigned long long int word_t;
+typedef long long int sword_t;
 
 #endif
