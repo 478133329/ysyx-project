@@ -1,48 +1,18 @@
 #include <memory.h>
 
-#define CONFIG_MSIZE 1024
+#define CONFIG_MSIZE 0x8000
 #define CONFIG_MBASE 0x80000000
 
 static uint8_t mem[CONFIG_MSIZE];
 
-static bool in_mem(addr_t addr) {
+static bool in_mem(vaddr_t addr) {
     if (addr >= CONFIG_MBASE && addr < CONFIG_MBASE + CONFIG_MSIZE) {
         return true;
     }
     return false;
 }
 
-word_t mem_read(addr_t addr, int len) {
-    if (in_mem(addr) == false) {
-        printf("%016lx is out of memory bound.\n", addr);
-        assert(0);
-    }
-    word_t data = 0;
-    switch (len) {
-        case 1: data = *(uint8_t*)(mem + addr); break;
-        case 2: data = *(uint16_t*)(mem + addr); break;
-        case 4: data = *(uint32_t*)(mem + addr); break;
-        case 8: data = *(uint64_t*)(mem + addr); break;
-        default: printf("Illegal memory read length.\n"); assert(0);
-    }
-    return data;
-}
-
-void mem_write(addr_t addr, int len, word_t data) {
-    if (in_mem(addr) == false) {
-        printf("%016lx is out of memory bound.\n", addr);
-        assert(0);
-    }
-    switch (len) {
-        case 1: *(uint8_t*)(mem + addr) = data; break;
-        case 2: *(uint16_t*)(mem + addr) = data; break;
-        case 4: *(uint32_t*)(mem + addr) = data; break;
-        case 8: *(uint64_t*)(mem + addr) = data; break;
-        default: printf("Illegal memory write length.\n"); assert(0);
-    }
-}
-
-int64_t load_img(const char* img_file) {
+static int64_t load_img(const char* img_file) {
     if (img_file == NULL) {
         printf("No image is given.\n");
         assert(0);
@@ -62,4 +32,40 @@ int64_t load_img(const char* img_file) {
 
     fclose(fp);
     return size;
+}
+
+word_t mem_read(vaddr_t addr, int len) {
+    if (in_mem(addr) == false) {
+        printf("%016lx is out of memory bound.\n", addr);
+        assert(0);
+    }
+    vaddr_t host_addr = addr - CONFIG_MBASE;
+    word_t data = 0;
+    switch (len) {
+        case 1: data = *(uint8_t*)(mem + host_addr); break;
+        case 2: data = *(uint16_t*)(mem + host_addr); break;
+        case 4: data = *(uint32_t*)(mem + host_addr); break;
+        case 8: data = *(uint64_t*)(mem + host_addr); break;
+        default: printf("Illegal memory read length.\n"); assert(0);
+    }
+    return data;
+}
+
+void mem_write(vaddr_t addr, int len, word_t data) {
+    if (in_mem(addr) == false) {
+        printf("%016lx is out of memory bound.\n", addr);
+        assert(0);
+    }
+    vaddr_t host_addr = addr - CONFIG_MBASE;
+    switch (len) {
+        case 1: *(uint8_t*)(mem + host_addr) = data; break;
+        case 2: *(uint16_t*)(mem + host_addr) = data; break;
+        case 4: *(uint32_t*)(mem + host_addr) = data; break;
+        case 8: *(uint64_t*)(mem + host_addr) = data; break;
+        default: printf("Illegal memory write length.\n"); assert(0);
+    }
+}
+
+void memory_init(const char* img_file) {
+    load_img(img_file);
 }

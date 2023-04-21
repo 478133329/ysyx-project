@@ -1,4 +1,4 @@
-import "DPI-C" function void call_break(input bit call);
+import "DPI-C" function void npc_trap(input longint halt_pc);
 
 module my_cpu(input clk, 
 		input rst, 
@@ -72,7 +72,7 @@ module my_cpu(input clk,
 				.alu_op(alu_op), .alu_a_sel(alu_a_sel), .alu_b_sel(alu_b_sel), .mem_wen(mem_wen), .pc_j_jump(pc_j_jump), .pc_b_jump_cond(pc_b_jump_cond));
 
 	always@(*) begin
-		if(instr==32'h00100073) call_break(1'b1);
+		if(instr==32'h00100073) npc_trap(pc);
 	end
 
 endmodule

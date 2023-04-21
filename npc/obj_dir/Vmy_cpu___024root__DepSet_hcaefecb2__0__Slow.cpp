@@ -25,7 +25,7 @@ VL_ATTR_COLD void Vmy_cpu___024root___eval_triggers__stl(Vmy_cpu___024root* vlSe
 #endif
 }
 
-void Vmy_cpu___024unit____Vdpiimwrap_call_break_TOP____024unit(CData/*0:0*/ call);
+void Vmy_cpu___024unit____Vdpiimwrap_npc_trap_TOP____024unit(QData/*63:0*/ halt_pc);
 
 VL_ATTR_COLD void Vmy_cpu___024root___stl_sequent__TOP__0(Vmy_cpu___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -33,7 +33,7 @@ VL_ATTR_COLD void Vmy_cpu___024root___stl_sequent__TOP__0(Vmy_cpu___024root* vlS
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vmy_cpu___024root___stl_sequent__TOP__0\n"); );
     // Body
     if ((0x100073U == vlSelf->instr)) {
-        Vmy_cpu___024unit____Vdpiimwrap_call_break_TOP____024unit(1U);
+        Vmy_cpu___024unit____Vdpiimwrap_npc_trap_TOP____024unit(vlSelf->my_cpu__DOT__pc);
     }
     vlSelf->instr_raddr = vlSelf->my_cpu__DOT__pc;
     vlSelf->my_cpu__DOT__alu_src1_mux21__DOT__i0__DOT__pair_list[1U][0U] 

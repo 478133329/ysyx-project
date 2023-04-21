@@ -8,12 +8,12 @@
 #include "Vmy_cpu__Syms.h"
 #include "Vmy_cpu___024unit.h"
 
-extern "C" void call_break(svBit call);
+extern "C" void npc_trap(long long halt_pc);
 
-VL_INLINE_OPT void Vmy_cpu___024unit____Vdpiimwrap_call_break_TOP____024unit(CData/*0:0*/ call) {
-    VL_DEBUG_IF(VL_DBG_MSGF("+        Vmy_cpu___024unit____Vdpiimwrap_call_break_TOP____024unit\n"); );
+VL_INLINE_OPT void Vmy_cpu___024unit____Vdpiimwrap_npc_trap_TOP____024unit(QData/*63:0*/ halt_pc) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vmy_cpu___024unit____Vdpiimwrap_npc_trap_TOP____024unit\n"); );
     // Body
-    svBit call__Vcvt;
-    for (size_t call__Vidx = 0; call__Vidx < 1; ++call__Vidx) call__Vcvt = call;
-    call_break(call__Vcvt);
+    long long halt_pc__Vcvt;
+    for (size_t halt_pc__Vidx = 0; halt_pc__Vidx < 1; ++halt_pc__Vidx) halt_pc__Vcvt = halt_pc;
+    npc_trap(halt_pc__Vcvt);
 }
